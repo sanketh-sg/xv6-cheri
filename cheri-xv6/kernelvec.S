@@ -1,6 +1,9 @@
-.globl exception
+.globl trap_handler
 .globl kernelvec
-.align 4
+.type kernelvec, @function
+
+
+.align 16
 kernelvec:
         # Make room to save registers (capabilities need 2x space)
         cincoffset csp, csp, -512  # 256 bytes for GPRs + 256 for capabilities
@@ -27,22 +30,13 @@ kernelvec:
         csc ct6,  480(csp)
 
         # Save PCC and special registers
-        cspecialr ct0, pcc
-        csc ct0, 496(csp)   # Store PCC at end of frame
+        #cspecialr ct0, pcc
+        #csc ct0, 496(csp)   # Store PCC at end of frame
 
-        # Ensure system register access permission
-        cspecialr ct0, pcc
-        lui t1, %hi(CHERI_PERM_SYSTEM_REGS)
-        candperm ct0, ct0, t1
-        cjr ct0
 
         # Call C trap handler with proper capability setup
-        cllc ct0, exception
-        cjalr ct0
-
-        # Restore PCC first
-        clc ct0, 496(csp)
-        cspecialw pcc, ct0
+        cllc ct6, trap_handler
+        cjalr ct6
 
         # Restore integer registers
         clc cra,  0(csp)
@@ -65,8 +59,14 @@ kernelvec:
         clc ct5,  464(csp)
         clc ct6,  480(csp)
 
+        # Restore PCC 
+        #clc ct0, 496(csp)
+        #cspecialw pcc, ct0
+
         # Restore stack
         cincoffset csp, csp, 512
 
         # Return with capability-aware instruction
-        sret  # CHERI variant of sret that handles capability restoration
+        sret  
+
+.size kernelvec, . - kernelvec

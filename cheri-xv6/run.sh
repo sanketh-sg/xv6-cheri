@@ -13,10 +13,16 @@ KERNEL=kernel.c
 MAIN=main.c
 LINKER=linker.ld
 KPRINT=kprintf.c
+TRAP=trap.c
+KERNELVEC=kernelvec.S
+PLIC=plic.c
 
 # Compile sources
 $CC -c $ENTRY -o entry.o
 $CC -c $KPRINT -o kprintf.o
+$CC -c $KERNELVEC -o kernelvec.o
+$CC -c $PLIC -o plic.o
+$CC -c $TRAP -o trap.o
 $CC -c $KERNEL -o kernel.o
 $CC -c $MAIN -o main.o
 
@@ -25,7 +31,7 @@ riscv64-unknown-freebsd-cc \
   -nostdlib -nostartfiles -ffreestanding -static \
   -Wl,-T,$LINKER \
   -Wl,-Map=kernel.map \
-  entry.o kernel.o kprintf.o main.o\
+  entry.o kernel.o kprintf.o kernelvec.o plic.o trap.o main.o\
   -o kernel.elf
 
 # Run with QEMU (no BIOS, direct ELF booting)

@@ -257,31 +257,31 @@ w_satp(uint64_t  x)
   asm volatile("csrw satp, %0" : : "r" (x));
 }
 
-// static inline uintptr_t 
-// r_satp()
-// {
-//   uintptr_t  x;
-//   asm volatile("csrr %0, satp" : "=r" (x) );
-//   return x;
-// }
+static inline uint64_t 
+r_satp()
+{
+  uint64_t  x;
+  asm volatile("csrr %0, satp" : "=r" (x) );
+  return x;
+}
 
-// // Supervisor Trap Cause
-// static inline uintptr_t 
-// r_scause()
-// {
-//   uintptr_t  x;
-//   asm volatile("csrr %0, scause" : "=r" (x) );
-//   return x;
-// }
+// Supervisor Trap Cause
+static inline uint64_t 
+r_scause()
+{
+  uint64_t  x;
+  asm volatile("csrr %0, scause" : "=r" (x) );
+  return x;
+}
 
-// // Supervisor Trap Value
-// static inline uintptr_t 
-// r_stval()
-// {
-//   uintptr_t  x;
-//   asm volatile("csrr %0, stval" : "=r" (x) );
-//   return x;
-// }
+// Supervisor Trap Value
+static inline uint64_t 
+r_stval()
+{
+  uint64_t  x;
+  asm volatile("csrr %0, stval" : "=r" (x) );
+  return x;
+}
 
 // Machine-mode Counter-Enable
 static inline void 
@@ -321,13 +321,13 @@ intr_off()
   w_sstatus(r_sstatus() & ~SSTATUS_SIE);
 }
 
-// // are device interrupts enabled?
-// static inline int
-// intr_get()
-// {
-//   uintptr_t  x = r_sstatus();
-//   return (x & SSTATUS_SIE) != 0;
-// }
+// are device interrupts enabled?
+static inline int
+intr_get()
+{
+  uint64_t  x = r_sstatus();
+  return (x & SSTATUS_SIE) != 0;
+}
 
 // static inline void *__capability r_sp() {
 //     void *__capability sp;

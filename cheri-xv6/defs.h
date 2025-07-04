@@ -1,4 +1,5 @@
 int main(void);
+void handle_timer_interrupt(void);
 void timerinit(void);
 void init_uart0(void);
 void interruptinit(void);
@@ -6,4 +7,11 @@ void plic_cap_init(void);
 void panic(char *s);
 void putachar(char c);
 void printstring(const char *s);
+void printhex(uint64_t x);
 char getachar(void);
+void plic_init(void);
+int plic_claim(void);
+void plic_complete(int irq);
+void uartintr(void);
+void trapinit(void);
+int devintr(void);

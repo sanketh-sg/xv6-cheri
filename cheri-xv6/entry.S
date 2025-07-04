@@ -10,8 +10,9 @@ _entry:
 
     # --- Get stack pointer capability ---
 1:
-    auipcc    ca0, %pcrel_hi(next)
-    cincoffset ca0, ca0, %pcrel_lo(1b)
+    #auipcc    ca0, %pcrel_hi(next)
+    #cincoffset ca0, ca0, %pcrel_lo(1b)
+    cllc   ca0,    next
 
     cspecialr ct3, pcc
     csetaddr  ca0, ct3, a0
@@ -25,8 +26,9 @@ _entry:
 
 next:
     # Load stack0 into ca0
-    auipcc      ca0, %pcrel_hi(stack0)
-    cincoffset  ca0, ca0, %pcrel_lo(next)
+    #auipcc      ca0, %pcrel_hi(stack0)
+    #cincoffset  ca0, ca0, %pcrel_lo(next)
+    cllc   ca0,    stack0
 
     # Set bounds to entire 128 KB region
     li          t0, 128*1024
@@ -47,8 +49,9 @@ next:
     cmove       csp, ca0
 
 3:
-    auipcc    ca0, %pcrel_hi(start)
-    cincoffset ca0, ca0, %pcrel_lo(3b)
+    #auipcc    ca0, %pcrel_hi(start)
+    #cincoffset ca0, ca0, %pcrel_lo(3b)
+    cllc    ca0,    start
     cjalr     cra, ca0              # call start() in kernel.c
 
 spin:
