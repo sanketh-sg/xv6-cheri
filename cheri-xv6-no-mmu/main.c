@@ -22,7 +22,7 @@ void user_printstring(const char *s) {
 }
 
 void user_putachar(char c) {
-    syscall(PUTCHAR, (uintptr_t)c);
+    syscall(PUTCHAR, c);
 }
 
 char user_getachar(void) {
@@ -36,7 +36,8 @@ char user_getachar(void) {
 
 int main(void) {
 
-    char c='A';
+    // cheri_init_globals(); 
+    volatile char c='A';
 
     user_printstring("Starting CHERI-XV6...\n"); 
     while (1) {

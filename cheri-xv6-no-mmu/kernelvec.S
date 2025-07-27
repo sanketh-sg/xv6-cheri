@@ -4,11 +4,6 @@
 
 .align 16
 kernelvec:
-    # Save user stack pointer to mscratch and load kernel stack
-    cspecialr ct0, mscratchc    # Get kernel stack capability from mscratch
-    cspecialw mscratchc, csp    # Save user stack to mscratch
-    cmove csp, ct0              # Load kernel stack
-    
     # Allocate trap frame: 32 GPRs + 32 CHERI registers (conservatively)
     # CHERI registers are saved every 16 bytes, total 512 bytes
     cincoffset csp, csp, -512
@@ -54,12 +49,12 @@ kernelvec:
     cllc ct6, trap_handler
     cjalr ct6  # call trap_handler()
 
-    # Restore capability registers (except ct0 which we'll use for stack switching)
+    # Restore capability registers
     clc cra,   0(csp)
-    # Skip csp,16 - we don't restore csp from saved value
+    clc csp,  16(csp)
     clc cgp,  32(csp)
     # clc ctp skipped (optional: hartid etc.)
-    # Skip ct0,64 for now - we'll use ct0 for stack switching
+    clc ct0,  64(csp)
     clc ct1,  80(csp)
     clc ct2,  96(csp)
     clc cs0, 112(csp)
@@ -90,19 +85,9 @@ kernelvec:
     clc ct5, 464(csp)
     clc ct6, 480(csp)
 
-    # Now handle stack switching
-    # Get user stack from mscratch
-    cspecialr ct0, mscratchc    # Get user stack from mscratch
-    # Restore kernel stack pointer
+
+    # Restore stack
     cincoffset csp, csp, 512
-    # Save kernel stack back to mscratch  
-    cspecialw mscratchc, csp
-    # Switch to user stack
-    cmove csp, ct0
-    
-    # Finally, restore ct0 from a known location
-    # Since we can't easily restore ct0 now, we'll leave it as is for now
-    # In practice, user code typically doesn't rely on ct0 being preserved across interrupts
 
     # Return to interrupted code
     mret

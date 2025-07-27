@@ -1,5 +1,5 @@
 OUTPUT_ARCH("riscv")
-ENTRY(_entry)
+ENTRY(_user_entry)
 
 CAP_ALIGN = 0x20;
 
@@ -11,9 +11,8 @@ PHDRS {
 
 SECTIONS {
 
-  /* Start at OpenSBI entry point */
+  . = 0x00000000;
   /*. = 0x80200000;*/
-  . = 0x80000000;
 
   /* Text section (executable code) */
   .text : {
@@ -70,15 +69,6 @@ SECTIONS {
         *(.bss .bss.* .sbss .sbss.*);
         __bss_end = .;
   } : data
-
-
-  /* Stack space */
-  .stack (NOLOAD) : {
-    . = ALIGN(CAP_ALIGN);
-    stack0 = .; /* top of the stack */
-    . += 128 * 1024 ; /* The kernel stack comes after the .bss section, and its size is 128KB.*/
-  }
-
 
   PROVIDE(end = .);
 }

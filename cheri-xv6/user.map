@@ -1,0 +1,171 @@
+             VMA              LMA     Size Align Out     In      Symbol
+               0                0        0     1 CAP_ALIGN = 0x20
+               0                0        0     1 . = 0x00000000
+               0                0     1000     4 .text
+               0                0       28     2         userentry.o:(.text)
+               0                0        0     1                 
+               0                0        0     1                 
+               0                0       28     1                 _user_entry
+              26               26        0     1                 spin
+              26               26        0     1                 
+              26               26        0     1                 
+              28               28        0     1                 
+              28               28       b0     4         main.o:(.text)
+              28               28        0     1                 
+              28               28        0     1                 
+              28               28        0     1                 
+              28               28        0     1                 
+              28               28       12     1                 syscall
+              2c               2c        0     1                 
+              30               30        0     1                 
+              34               34        0     1                 
+              38               38        0     1                 
+              38               38        0     1                 
+              3a               3a        0     1                 
+              3a               3a        0     1                 
+              3a               3a        0     1                 
+              3a               3a        0     1                 
+              3a               3a        0     1                 
+              3a               3a        0     1                 
+              3a               3a       16     1                 user_printstring
+              3e               3e        0     1                 
+              42               42        0     1                 
+              46               46        0     1                 
+              4a               4a        0     1                 
+              4e               4e        0     1                 
+              4e               4e        0     1                 
+              50               50        0     1                 
+              50               50        0     1                 
+              50               50        0     1                 
+              50               50        0     1                 
+              50               50        0     1                 
+              50               50        0     1                 
+              50               50       1a     1                 user_putachar
+              54               54        0     1                 
+              54               54        0     1                 
+              58               58        0     1                 
+              5c               5c        0     1                 
+              60               60        0     1                 
+              64               64        0     1                 
+              68               68        0     1                 
+              68               68        0     1                 
+              6a               6a        0     1                 
+              6a               6a        0     1                 
+              6a               6a        0     1                 
+              6a               6a        0     1                 
+              6a               6a        0     1                 
+              6a               6a        0     1                 
+              6a               6a       1a     1                 user_getachar
+              6e               6e        0     1                 
+              72               72        0     1                 
+              76               76        0     1                 
+              7a               7a        0     1                 
+              7e               7e        0     1                 
+              7e               7e        0     1                 
+              82               82        0     1                 
+              84               84        0     1                 
+              84               84        0     1                 
+              84               84        0     1                 
+              84               84        0     1                 
+              84               84        0     1                 .LBB4_3
+              84               84        0     1                 
+              84               84        0     1                 
+              84               84       54     1                 main
+              8c               8c        0     1                 
+              8c               8c        0     1                 
+              90               90        0     1                 
+              94               94        0     1                 
+              98               98        0     1                 
+              9c               9c        0     1                 
+              a0               a0        0     1                 
+              a0               a0        0     1                 
+              a4               a4        0     1                 
+              a8               a8        0     1                 
+              a8               a8        0     1                 
+              b0               b0        0     1                 
+              b0               b0        0     1                 
+              b4               b4        0     1                 
+              b8               b8        0     1                 
+              bc               bc        0     1                 
+              c0               c0        0     1                 
+              c4               c4        0     1                 
+              c4               c4        0     1                 
+              c8               c8        0     1                 
+              cc               cc        0     1                 
+              cc               cc        0     1                 
+              d0               d0        0     1                 
+              d4               d4        0     1                 
+              d8               d8        0     1                 
+              d8               d8        0     1                 
+              d8               d8      f28     1         . = ALIGN ( 0x1000 )
+            1000             1000       34     4 .eh_frame_hdr
+            1000             1000       34     4         <internal>:(.eh_frame_hdr)
+            1038             1038       94     8 .eh_frame
+            1038             1038       14     1         main.o:(.eh_frame+0x0)
+            1050             1050       14     1         main.o:(.eh_frame+0x14)
+            1068             1068       14     1         main.o:(.eh_frame+0x28)
+            1080             1080       14     1         main.o:(.eh_frame+0x3c)
+            1098             1098       14     1         main.o:(.eh_frame+0x50)
+            10b0             10b0       14     1         main.o:(.eh_frame+0x64)
+            10cc             10cc       2b     1 .rodata
+            10cc             10cc       14     1         . = ALIGN ( CAP_ALIGN )
+            10e0             10e0       17     1         <internal>:(.rodata)
+            10f7             10f7        9     1 . = ALIGN ( CAP_ALIGN )
+            1100             1100       28     8 __cap_relocs
+            1100             1100       28     8         <internal>:(__cap_relocs)
+            1130             1130       20    16 .captable
+            1130             1130       10     1         . = ALIGN ( CAP_ALIGN )
+            1140             1140       10    16         <internal>:(.captable)
+            1150             1150       10     1 .data
+            1150             1150       10     1         . = ALIGN ( CAP_ALIGN )
+            2000             2000     1000    16 .bss
+            2000             2000        0     1         __bss = .
+            2000             2000     1000    16         main.o:(.bss)
+            2000             2000     1000     1                 userstack
+            3000             3000        0     1         __bss_end = .
+               0                0      418     1 .debug_info
+               0                0       e4     1         userentry.o:(.debug_info)
+               0                0        0     1                 
+              e4               e4      334     1         main.o:(.debug_info)
+               0                0      165     1 .debug_abbrev
+               0                0       21     1         userentry.o:(.debug_abbrev)
+               0                0        0     1                 
+              21               21      144     1         main.o:(.debug_abbrev)
+               0                0       30     1 .debug_aranges
+               0                0       30     1         userentry.o:(.debug_aranges)
+               0                0      249     1 .debug_line
+               0                0       49     1         userentry.o:(.debug_line)
+               0                0        0     1                 .Lline_table_start0
+              49               49      200     1         main.o:(.debug_line)
+              49               49        0     1                 .Lline_table_start0
+               0                0      2c5     1 .debug_loc
+               0                0      2c5     1         main.o:(.debug_loc)
+               0                0        0     1                 
+              23               23        0     1                 
+              59               59        0     1                 
+              7c               7c        0     1                 
+              b2               b2        0     1                 
+              d5               d5        0     1                 
+              f8               f8        0     1                 
+             12e              12e        0     1                 
+             151              151        0     1                 
+             187              187        0     1                 
+             1aa              1aa        0     1                 
+             1e0              1e0        0     1                 
+             203              203        0     1                 
+             226              226        0     1                 
+             249              249        0     1                 
+             26c              26c        0     1                 
+             2a2              2a2        0     1                 
+               0                0      15a     1 .debug_str
+               0                0      15a     1         <internal>:(.debug_str)
+               0                0       84     1 .comment
+               0                0       84     1         <internal>:(.comment)
+               0                0       3f     1 .riscv.attributes
+               0                0       3f     1         main.o:(.riscv.attributes)
+               0                0      d68     8 .symtab
+               0                0      d68     8         <internal>:(.symtab)
+               0                0       c9     1 .shstrtab
+               0                0       c9     1         <internal>:(.shstrtab)
+               0                0       77     1 .strtab
+               0                0       77     1         <internal>:(.strtab)

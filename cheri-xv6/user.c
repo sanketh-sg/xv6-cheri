@@ -1,9 +1,8 @@
 #include <stdint.h>
 #include "syscalls.h"
-#include <cheri_init_globals.h>
+
 __attribute__ ((aligned (16))) char userstack[4096];
 
-int main(void);
 
 uintptr_t syscall(uintptr_t nr, uintptr_t param) {
     uintptr_t retval = 0;
@@ -29,21 +28,22 @@ char user_getachar(void) {
     return (char)syscall(GETCHAR, 0);
 }
 
-// char yield(void) {
-//     syscall(YIELD, 0);
-// }
+char yield(void) {
+    syscall(YIELD, 0);
+}
 
 
 int main(void) {
 
-    char c='A';
-
+    char c=0;
+    // TODO: Initialize the console and printf
     user_printstring("Starting CHERI-XV6...\n"); 
-    while (1) {
-      user_putachar(c);
-      c++;
-      if( c > 'Z' ) c = 'A';
-    //   yield();
+    user_printstring("Process 2\n")
+    while(1) {
+      for (c='0'; c <= '9'; c++) {
+        putachar(c);
+        yield();
+      }
     }
     // user_printstring("Hello, CHERI-XV6!\n");
     return 0;
