@@ -35,3 +35,10 @@ Also refer to run.sh in cheri-xv6 folder which upon running takes care of compil
 
 - For more details, refer to the official [xv6](https://pdos.csail.mit.edu/6.828/2021/xv6.html) and [CHERI](https://www.cl.cam.ac.uk/research/security/ctsrd/cheri/) documentation.
 - If you encounter issues, check the `Makefile` and ensure all dependencies are installed.
+
+## Status
+- Basic UART functiinality works 
+- Paging setup works, able to jump to virtual address where user code is placed.
+- Unable to pass a valid address for the string or should I pass a capability? from user mode when syscall happens.
+- When paging is disabled a valid capability gets passed. Hence it prints without any issue.
+
