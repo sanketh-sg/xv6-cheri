@@ -103,27 +103,6 @@ void timerinit(void) {
   //reaches or exceeds the value in the mtimecmp register.
 }
 
-
-// ask each hart to generate timer interrupts.
-// void
-// timerinit()
-// {
-//   // enable supervisor-mode timer interrupts.
-//   w_mie(r_mie() | MIE_STIE);
-  
-//   uint64_t mcfg = r_menvcfg();
-//   mcfg |= (1L << 28);
-//   w_menvcfg(mcfg);
-//   // enable the sstc extension (i.e. stimecmp).
-//   w_menvcfg(r_menvcfg() | (1L << 63)); 
-  
-//   // allow supervisor to use stimecmp and time.
-//   w_mcounteren(r_mcounteren() | 2);
-  
-//   // ask for the very first timer interrupt.
-//   w_stimecmp(r_time() + 1000000);
-// }
-
 void interruptinit(void){
   // set desired IRQ priorities non-zero (otherwise disabled).
   // *(uint32*)(PLIC + UART0_IRQ*4) = 1;
